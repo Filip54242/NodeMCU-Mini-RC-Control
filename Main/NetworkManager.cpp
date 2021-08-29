@@ -33,16 +33,14 @@ int * NetworkManager::getMessageFromClient()
   parsedMessage[0] = 1;
   String message = "";
   WiFiClient client = wifiServer->available();
-  if (client && client.connected()) {
-  
-     
+  if (client && client.connected()) {  
     while (client.available() > 0) {
       char c = client.read();
       if (c == ',')
       {
         changed = true;
-        parsedMessage[parsedMessage[0]++] = atoi(message.c_str());
-       // Serial.println(message);
+        parsedMessage[parsedMessage[0]++] = message.toInt();
+      // Serial.println(message);
         message = "";
       }
 
